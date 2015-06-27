@@ -196,3 +196,56 @@ Y por último le diremos a nuestra ruta `/save` que renderice la vista que acaba
 var fullName = req.body.fullName;
 res.render('profile', { fullName: fullName });
 ```
+
+## Base de Datos
+
+Vamos a utilizar una base de datos para almacenar nuestro perfil, para eso utilizaremos MongoDB con el módulo `mongoose`.
+
+Primero instalamos `mongoose` de la siguiente manera:
+
+``` bash
+$ npm install mongoose --save
+```
+
+Luego creamos un archivo `database.js` que contendrá la información de la base de datos
+
+
+``` js 
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+mongoose.connect('<db-url>');
+
+var Profile = new Schema({
+  fullName: { type: String }
+});
+
+mongoose.model('profile', Profile);
+
+module.exports = {
+  Profile: mongoose.model('profile')
+}
+```
+
+Luego en nuestra ruta `/save` vamos a guardar el perfil que estamos creando con el nuevo modelo de base de
+datos que creamos:
+
+``` js
+var Profile = require('./database').Profile;
+...
+app.post('/save', function (req, res) {
+  var fullName = req.body.fullName;
+
+  Profile.findOne(function (err, profile) {
+    if (err || !profile) {
+      profile = new Profile();
+    }
+
+    profile.fullName = fullName;
+    profile.save(function (err) {
+      res.render('profile', profile);
+    });
+  });
+
+});
+```
