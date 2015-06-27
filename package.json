@@ -9,6 +9,7 @@
   "author": "Julian Duque <julianduquej@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.13.1",
     "express": "^4.13.0"
   }
 }

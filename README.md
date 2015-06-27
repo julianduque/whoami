@@ -136,3 +136,32 @@ este formulario deberá enviar una petición `POST` a la ruta `/save` de nuestra
   <button type="submit">Save</button>
 </form>
 ```
+
+## Ruta /save
+
+Crearemos una ruta tipo `POST` en nuestro servidor `http`, para eso utilizaremos express, y para poder
+procesar los parametros que nos envia el formulario necesitas definir un body parser como un middleware de express.
+
+Primero debemos instalar este módulo desde npm así:
+
+``` bash 
+$ npm install body-parser --save
+```
+
+Y luego lo adherimos como middleware de nuestra aplicación:
+
+``` js 
+var bodyParser = require('body-parser');
+...
+app.use(bodyParser.urlencoded({ extended: false }));
+
+```
+
+Ya que tenemos el middleware podemos definir nuestra ruta y recibir el parámetro `fullName`:
+
+``` js 
+app.post('/save', function (req, res) {
+  var fullName = req.body.fullName;
+  res.end(fullName);
+});
+```
