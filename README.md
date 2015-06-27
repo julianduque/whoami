@@ -165,3 +165,34 @@ app.post('/save', function (req, res) {
   res.end(fullName);
 });
 ```
+
+## Vistas con EJS
+
+Vamos a utilizar un motor de plantillas llamado EJS, este me permitirá crear vistas html dinámicas con información
+que enviaremos desde el servidor, en este caso con el nombre completo.
+
+Primero instalamos ejs:
+
+``` bach
+$ npm install ejs --save
+```
+
+Luego configuramos express para que utilice ejs:
+
+``` js
+app.set('view engine', 'ejs');
+```
+
+Este motor de plantillas espera que yo las guarde en un directorio llamado `views` con extensión `.ejs`, en este directorio
+crearemos un archivo llamado `profile.ejs` con lo siguiente:
+
+``` html
+<h1>I'm <%= fullName %></h1>
+```
+
+Y por último le diremos a nuestra ruta `/save` que renderice la vista que acabamos de crear:
+
+``` js 
+var fullName = req.body.fullName;
+res.render('profile', { fullName: fullName });
+```
