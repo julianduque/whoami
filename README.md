@@ -124,3 +124,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var server = http.createServer(app);
 ```
+
+## Formulario
+
+Crearemos un formulario sencillo en el archivo `index.html` donde preguntaremos por el campo tipo texto `fullName`,
+este formulario deberá enviar una petición `POST` a la ruta `/save` de nuestra aplicación.
+
+``` html 
+<form action="/save" method="POST">
+  <input type="text" name="fullName">
+  <button type="submit">Save</button>
+</form>
+```
