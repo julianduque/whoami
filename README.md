@@ -46,3 +46,44 @@ cada vez que llegue una petición al servidor.
 
 los objetos `req` y `res` representan el request y el response, en el uno recibimos los parametros de la petición
 y con el otro enviamos la respuesta a quien nos hace la petición.
+
+## Desplegando en la nube
+
+Vamos a desplegar nuestra aplicación a la nube utilizando [Heroku](http://heroku.com/), primero debemos crear una
+cuenta en Heroku y descargar el [Heroku Toolbelt](https://toolbelt.heroku.com/).
+
+Para que nuestra aplicación pueda ser desplegada debemos garantizar que estemos trabajando en un repositorio git.
+
+Para iniciar un repositorio git ejecutamos:
+
+``` bash 
+$ git init
+```
+
+Y luego agregamos todos los archivos al repositorio y hacemos commit:
+
+``` bash 
+$ git add .
+$ git commit -m "Añadir archivos al repo"
+```
+
+Luego debemos hacer login con la aplicación de heroku:
+
+``` bash
+$ heroku login
+```
+
+Después de autenticarse debemos crear nuestra aplicación en heroku ejecutando:
+
+``` bash
+$ heroku create <app-name>
+```
+
+Y ya lo último que falta es subir nuestra aplicación a Heroku!, para eso utilizamos git
+
+``` bash
+$ git push heroku master
+```
+
+De ahora en adelante cada que queramos subir una nueva versión de la aplicación a Heroku solo debemos realizar
+el commit y hacer push a `heroku master`
