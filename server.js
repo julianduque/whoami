@@ -1,8 +1,11 @@
 var http = require('http');
+var path = require('path');
+var fs = require('fs');
+
 var port = process.env.PORT || 8080;
 
 var server = http.createServer(function (req, res) {
-  res.end('Who am I?')
+  fs.createReadStream(path.join(__dirname, 'public', 'index.html')).pipe(res);
 });
 
 server.listen(port, function () {

@@ -87,3 +87,20 @@ $ git push heroku master
 
 De ahora en adelante cada que queramos subir una nueva versión de la aplicación a Heroku solo debemos realizar
 el commit y hacer push a `heroku master`
+
+## Servidor estático - index.html
+
+Ahora vamos a modificar el servidor para que nos entregue un archivo html, para esto vamos a utilizar el módulo
+`fs` que nos permite acceder al sistema de archivos.
+
+Primero crearemos un directorio llamado `public` donde guardaremos los archivos estáticos, y luego creamos un archivo
+`index.html` para enviarlo en la respuesta del servidor.
+
+``` js 
+var path = require('path');
+var fs = require('fs');
+
+var server = http.createServer(function (req, res) {
+  fs.createReadStream(path.join(__dirname, 'public', 'index.html')).pipe(res);
+});
+```
