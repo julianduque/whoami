@@ -104,3 +104,23 @@ var server = http.createServer(function (req, res) {
   fs.createReadStream(path.join(__dirname, 'public', 'index.html')).pipe(res);
 });
 ```
+
+## Servidor estático - express.js
+
+Vamos a utilizar el módulo `express` para crear un servidor web mucho más completo, primero debemos instalar `express` ejecutando:
+
+``` bash 
+$ npm install express --save
+```
+
+Luego vamos a crear una aplicación express y la usaremos como Request Listener de nuestro servidor `http` y vamos a utilizar
+`express.static` como middleware para servir archivos estáticos desde la carpeta `public`.
+
+``` js 
+var express = require('express');
+var app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+var server = http.createServer(app);
+```
