@@ -47,6 +47,11 @@ cada vez que llegue una petición al servidor.
 los objetos `req` y `res` representan el request y el response, en el uno recibimos los parametros de la petición
 y con el otro enviamos la respuesta a quien nos hace la petición.
 
+Para probar que el servidor esté corriendo localmente antes de subir a la nube ejecutamos el comando 
+```bash
+node server.js
+```
+
 ## Desplegando en la nube
 
 Vamos a desplegar nuestra aplicación a la nube utilizando [Heroku](http://heroku.com/), primero debemos crear una
